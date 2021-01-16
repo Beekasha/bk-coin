@@ -38,15 +38,10 @@ class Blockchain{
 			const currentBlock = this.chain[i];
 			const previousBlock = this.chain[i-1];
 
-			if(currentBlock.hash !== currentBlock.calculateHash()){
-				return false;
-			}
-
-			if(currentBlock.previousHash !== previousBlock.hash){
+			if((currentBlock.hash !== currentBlock.calculateHash()) || (currentBlock.previousHash !== previousBlock.hash)) {
 				return false;
 			}
 		}
-
 		return true;
 	}
 }
@@ -55,10 +50,11 @@ let bkCoin = new Blockchain();
 bkCoin.addBlock(new Block(1, '01/03/2021', { amount: 4 }));
 bkCoin.addBlock(new Block(1, '01/06/2021', { amount: 10 }));
 
-console.log(`Is blockchain valid? ${bkCoin.isChainValid()}`);
-bkCoin.chain[1].data = { amount: 8000 };
-console.log(`Is blockchain valid? ${bkCoin.isChainValid()}`);
+// testing validity of isChainValid() after trying to tamper with the chain
+// console.log(`Is blockchain valid? ${bkCoin.isChainValid()}`);
+// bkCoin.chain[1].data = { amount: 8000 };
+// console.log(`Is blockchain valid after trying to tamper? ${bkCoin.isChainValid()}`);
 
 
-//stringify with 4 spaces - makes it more readable
+// stringify with 4 spaces - makes it more readable
 // console.log(JSON.stringify(bkCoin, null, 4)); 
