@@ -33,3 +33,9 @@ class Blockchain{
 		this.chain.push(newBlock);
 	}
 }
+
+let bkCoin = new Blockchain();
+bkCoin.addBlock(new Block(1, '01/03/2021', { amount: 4 }));
+bkCoin.addBlock(new Block(1, '01/06/2021', { amount: 10 }));
+
+console.log(JSON.stringify(bkCoin, null, 4));
