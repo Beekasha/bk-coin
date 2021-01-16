@@ -38,7 +38,7 @@ class Blockchain{
 			const currentBlock = this.chain[i];
 			const previousBlock = this.chain[i-1];
 
-			if(currentBlock.hash !== previousBlock.hash){
+			if(currentBlock.hash !== currentBlock.calculateHash()){
 				return false;
 			}
 
@@ -55,5 +55,7 @@ let bkCoin = new Blockchain();
 bkCoin.addBlock(new Block(1, '01/03/2021', { amount: 4 }));
 bkCoin.addBlock(new Block(1, '01/06/2021', { amount: 10 }));
 
+console.log(`Is blockchain valid? ${bkCoin.isChainValid()}`);
+
 //stringify with 4 spaces - makes it more readable
-console.log(JSON.stringify(bkCoin, null, 4)); 
+// console.log(JSON.stringify(bkCoin, null, 4)); 
